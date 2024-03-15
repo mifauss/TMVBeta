@@ -23,10 +23,12 @@ There is no unique definition of the multivariate beta distribution on the hyper
 ```math
 \boldsymbol{X} \sim F_{\boldsymbol{\alpha}, \boldsymbol{\beta}}^{-1} \bigl( \Phi(\boldsymbol{Z}) \bigr), \quad \text{with}\quad \boldsymbol{Z} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}),
 ```
-where $F_{\alpha, \beta}$ and $\Phi$ denote the CDF of the beta distribution and the standard normal distribution, respectively.
+where $F_{\alpha, \beta}$ and $\Phi$ denote the CDF of the beta distribution and the standard normal distribution, respectively, and the covariance matrix of $\boldsymbol{Z}$ has ones on its diagonal, $[\boldsymbol{\Sigma}]_{ii} = 1$
 
 
 ## Getting Started
+
+Three examples of how to use the distributions in this library are given below. For more details see the documentation in `src/tmvbeta/tmvbeta.py`.
 
 1. Sample from beta distribution truncated to interval $[0.2, 0.75]$, and estimate parameters from the sample:
 ```python
