@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tmvbeta"
+version = "0.1.0"
+authors = [
+  { name="Michael Fauss", email="mfauss@ets.org" },
+]
+description = "Truncated multivariate beta distribution"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "cvxpy",
+    "gridnm",
+    "numpy",
+    "scipy",
+    "sympy",
+]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src/tmvbeta"
+]
