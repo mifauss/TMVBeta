@@ -16,7 +16,6 @@ All distributions support common methods, such as, `pdf`, `cdf`, `logpdf`, etc. 
 
 Maximum likelihood estimation is performed using a grid-restrained version of the Nelder-Mead algorithm, which is guarantee to converge to a stationary point. See the documentation in `src/tmvbeta/tmvbeta.py` for details.
 
-
 ## Implementation Details 
 
 There is no unique definition of the multivariate beta distribution on the hypercube. The distribution implemented here is generated from a standard normal distribution via a Gaussian copula:
@@ -25,6 +24,12 @@ There is no unique definition of the multivariate beta distribution on the hyper
 ```
 where $F_{\alpha, \beta}$ and $\Phi$ denote the CDF of the beta distribution and the standard normal distribution, respectively, and the covariance matrix of $\boldsymbol{Z}$ has ones on its diagonal, $[\boldsymbol{\Sigma}]_{ii} = 1$
 
+## Installation
+
+TMVBeta can be installed from this repository. For example, using pip:
+```
+pip install git+https://gitlab.ets.org/rms/pdsm/testsecurity/tmvbeta
+```
 
 ## Getting Started
 
