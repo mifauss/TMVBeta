@@ -12,7 +12,7 @@ from scipy.stats._multivariate import _squeeze_output  # type: ignore
 from scipy.stats._distn_infrastructure import rv_continuous_frozen  # type: ignore
 from sympy.functions.special.hyper import hyper
 
-from minimax_tilting_sampler import TruncatedMVN  # type: ignore
+from .minimax_tilting_sampler import TruncatedMVN  # type: ignore
 
 # Custom types
 anyfloat = Union[float, np.float64]
