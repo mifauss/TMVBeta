@@ -18,7 +18,7 @@ classifiers = [
 ]
 dependencies = [
     "cvxpy",
-    "gridnm",
+    "gridnm @ git+https://gitlab.ets.org/rms/pdsm/testsecurity/gridnm",
     "numpy",
     "scipy",
     "sympy",
@@ -37,3 +37,6 @@ tests = [
 pythonpath = [
   "src/tmvbeta"
 ]
+
+[tool.hatch.metadata]
+allow-direct-references = true
