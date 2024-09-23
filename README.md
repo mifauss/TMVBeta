@@ -19,9 +19,9 @@ Maximum likelihood estimation is performed using a grid-restrained version of th
 ## Implementation Details 
 
 There is no unique definition of the multivariate beta distribution on the hypercube. The distribution implemented here is generated from a standard normal distribution via a Gaussian copula:
-```math
-\boldsymbol{X} \sim F_{\boldsymbol{\alpha}, \boldsymbol{\beta}}^{-1} \bigl( \Phi(\boldsymbol{Z}) \bigr), \quad \text{with}\quad \boldsymbol{Z} \sim \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}),
-```
+$$
+\boldsymbol{X} = F_{\boldsymbol{\alpha}, \boldsymbol{\beta}}^{-1} \bigl( \Phi(\boldsymbol{Z}) \bigr), \quad \text{with} \quad \boldsymbol{Z} = \mathcal{N}(\boldsymbol{0}, \boldsymbol{\Sigma}),
+$$
 where $F_{\alpha, \beta}$ and $\Phi$ denote the CDF of the beta distribution and the standard normal distribution, respectively, and the covariance matrix of $\boldsymbol{Z}$ has ones on its diagonal, $[\boldsymbol{\Sigma}]_{ii} = 1$
 
 ## Acknowledgment
