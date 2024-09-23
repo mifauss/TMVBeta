@@ -18,7 +18,7 @@ classifiers = [
 ]
 dependencies = [
     "cvxpy",
-    "gridnm @ git+https://gitlab.ets.org/rms/pdsm/testsecurity/gridnm",
+    "gridnm",
     "numpy",
     "scipy",
     "sympy",
@@ -34,9 +34,7 @@ tests = [
 ]
 
 [tool.pytest.ini_options]
-pythonpath = [
-  "src/tmvbeta"
+filterwarnings = [
+    # Ignore unescaped LaTeX in minimax_tilting_sampler
+    "ignore:invalid escape sequence:SyntaxWarning",
 ]
-
-[tool.hatch.metadata]
-allow-direct-references = true

@@ -332,6 +332,7 @@ class TestTMVBeta:
         x_min, x_max = 0.2, 0.8
         # Test
         tmvbeta = TMVBeta(np.ones(2), np.ones(2), np.eye(2), x_min=np.full(2, x_min), x_max=np.full(2, x_max))
+        print(mode_lb)
         tmvbeta.fit(X, mode_lb=mode_lb)
         assert np.all((tmvbeta.a - 1) / (tmvbeta.a + tmvbeta.b - 2) >= mode_lb - 1e-4)
         tmvbeta = TMVBeta(np.ones(2), np.ones(2), np.eye(2))

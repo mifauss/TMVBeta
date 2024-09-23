@@ -3,16 +3,20 @@ from typing import Callable, Collection, List, Tuple, TypedDict, Union
 import cvxpy as cp
 import numpy as np
 import numpy.typing as npt
+
 from gridnm import GridNM
+from httpimport import github_repo  # type: ignore
 from scipy.optimize import minimize, OptimizeResult  # type: ignore
 from scipy.special import beta as betafunc  # type: ignore
 from scipy.special import digamma, erfcinv  # type: ignore
 from scipy.stats import beta, multivariate_normal, norm, uniform  # type: ignore
 from scipy.stats._multivariate import _squeeze_output  # type: ignore
 from scipy.stats._distn_infrastructure import rv_continuous_frozen  # type: ignore
-from sympy.functions.special.hyper import hyper
+from sympy.functions.special.hyper import hyper  # type: ignore
 
-from .minimax_tilting_sampler import TruncatedMVN  # type: ignore
+# Efficient sampling from the truncated multivariate normal distribution
+with github_repo('brunzema', 'truncated-mvn-sampler', ref='main'):
+    from minimax_tilting_sampler import TruncatedMVN  # type: ignore
 
 # Custom types
 anyfloat = Union[float, np.float64]
@@ -21,6 +25,9 @@ anyfloat_or_array = Union[anyfloat, npt.NDArray[np.float64]]
 
 # Lower bound for beta distribution parameters
 EPS = 1e-6
+
+# Clipping of Z variable to avoid NaN in MVB logpdf
+Z_CLIP = 8
 
 
 class Constraint(TypedDict):
@@ -322,6 +329,7 @@ class TBeta:
             if in_open_interval(b, 0, np.inf):
                 self.b = b
             else:
+                print(b)
                 raise ValueError("Parameter 'b' must be a positive.")
 
         if x_min is not None:
@@ -472,6 +480,7 @@ class TBeta:
             MLE objective/negative log-likelihood as a function of vectorized
             distribution parameters theta = [a, b]
             """
+            theta = np.maximum(EPS, theta)
             self.update(*theta)
             func = np.mean(self.logpdf(x))
             grad = self._loglikelihood_grad(mean_log_a, mean_log_b)
@@ -855,7 +864,7 @@ class _MVBeta:
         X = process_sample(self.dim, X)
         Z = np.zeros_like(X)
         for k in range(self.dim):
-            Z[:, k] = norm.ppf(beta.cdf(X[:, k], self.a[k], self.b[k]))
+            Z[:, k] = np.clip(norm.ppf(beta.cdf(X[:, k], self.a[k], self.b[k])), -Z_CLIP, Z_CLIP)
         return Z
 
     def _Z_to_X(self, Z: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:

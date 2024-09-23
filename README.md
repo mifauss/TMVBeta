@@ -24,11 +24,15 @@ There is no unique definition of the multivariate beta distribution on the hyper
 ```
 where $F_{\alpha, \beta}$ and $\Phi$ denote the CDF of the beta distribution and the standard normal distribution, respectively, and the covariance matrix of $\boldsymbol{Z}$ has ones on its diagonal, $[\boldsymbol{\Sigma}]_{ii} = 1$
 
+## Acknowledgment
+
+The library uses [Paul Brunzema's implementation](https://github.com/brunzema/truncated-mvn-sampler) of the minimax tilting algorithm in [Botev (2016)](https://arxiv.org/pdf/1603.04166.pdf) for sampling.
+
 ## Installation
 
-TMVBeta can be installed from this repository. For example, using pip:
+TMVBeta is available on PyPI and can be installed, for example, using pip:
 ```
-pip install git+https://gitlab.ets.org/rms/pdsm/testsecurity/tmvbeta
+pip install tmvbeta
 ```
 
 ## Getting Started
